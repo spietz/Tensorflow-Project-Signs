@@ -6,8 +6,9 @@ numbers. The model and dataset is taken from the course
 ["Convolutional Neural
 Networks"](https://www.coursera.org/learn/convolutional-neural-networks).
 The dataset is not provided here, but may be downloaded by navigating
-to the notebook of the assignment on Coursera. It has been
-reimplemented in a generic project template by MrGemy95
+to the notebook of the assignment on Coursera. Create a directory
+"datasets" and put the two h5-files in this. It has been
+re-implemented in the generic project template
 <https://github.com/MrGemy95/Tensorflow-Project-Template>.
 
 # Usage
