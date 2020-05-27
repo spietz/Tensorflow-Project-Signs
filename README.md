@@ -15,9 +15,9 @@ reimplemented in a generic project template by MrGemy95
 Ensure that consistent versions of the various packages required for
 the code are used by generating a virtual environment and installing
 pip packages (python3) from
-[dependencies.txt](../blob/master/dependencies.txt).
+[requirements.txt](../blob/master/requirements.txt).
 ```
-pip3 install -r dependencies.txt
+pip3 install -r requirements.txt
 ```
 
 Begin the training by running the main script:
