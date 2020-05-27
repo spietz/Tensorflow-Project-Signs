@@ -1,5 +1,5 @@
 import tensorflow as tf
-
+from tqdm import tqdm
 
 class BaseTrain:
     def __init__(self, sess, model, data, config, logger):
@@ -8,14 +8,21 @@ class BaseTrain:
         self.config = config
         self.sess = sess
         self.data = data
-        self.init = tf.group(tf.global_variables_initializer(), tf.local_variables_initializer())
+        self.init = tf.group(tf.compat.v1.global_variables_initializer(),
+                             tf.compat.v1.local_variables_initializer())
         self.sess.run(self.init)
 
     def train(self):
-        for cur_epoch in range(self.model.cur_epoch_tensor.eval(self.sess), self.config.num_epochs + 1, 1):
+        iter_start = self.model.cur_epoch_tensor.eval(self.sess)
+        for cur_epoch in tqdm(range(iter_start, self.config.num_epochs+1, 1)):
             self.train_epoch()
             self.sess.run(self.model.increment_cur_epoch_tensor)
 
+            iter_current = self.model.cur_epoch_tensor.eval(self.sess) - iter_start
+            if (iter_current > iter_start
+                and iter_current % self.config.save_interval == 0):
+                self.model.save(self.sess)
+            
     def train_epoch(self):
         """
         implement the logic of epoch:

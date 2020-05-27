@@ -1,0 +1,10 @@
+{
+    "exp_name": "signs",
+    "num_epochs": 200,
+    "num_iter_per_epoch": 20,
+    "learning_rate": 0.009,
+    "batch_size": 64,
+    "state_size": [64,64,3],
+    "save_interval":100,
+    "max_to_keep":5
+}
