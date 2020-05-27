@@ -1,22 +1,22 @@
 # Intro
 
-Simple convolution model implementation in Tensforflow (v1) for
-classification of two dimensional images of sign language for
-numbers. The model and dataset is taken from the course
-["Convolutional Neural
-Networks"](https://www.coursera.org/learn/convolutional-neural-networks).
+Simple convolution model implementation in Tensorflow (v1) for
+classification of two dimensional images of sign-language signs for
+numbers 0-5. The model and dataset is taken from the course
+["Convolutional Neural Networks"](https://www.coursera.org/learn/convolutional-neural-networks).
 The dataset is not provided here, but may be downloaded by navigating
 to the notebook of the assignment on Coursera. Create a directory
-"datasets" and put the two h5-files in this. It has been
-re-implemented in the generic project template
+"datasets" in project root and put the two h5-files in this. 
+Note that the code has been completely
+re-written to fit within the generic project template
 <https://github.com/MrGemy95/Tensorflow-Project-Template>.
 
 # Usage
 
 Ensure that consistent versions of the various packages required for
 the code are used by generating a virtual environment and installing
-pip packages (python3) from
-[requirements.txt](../blob/master/requirements.txt).
+pip packages (python3) listed in
+[requirements.txt](../blob/master/requirements.txt):
 ```
 pip3 install -r requirements.txt
 ```
