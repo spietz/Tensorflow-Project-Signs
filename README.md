@@ -36,5 +36,6 @@ In a browser then open "localhost:6006" to see the graphs.
 # TODO
 
 * print accuracy at given intervals
-* add tests to summary
-* show the total iteration number when continuing from a checkpoint
+* ~~add tests to summary~~
+* ~~show the total iteration number when continuing from a checkpoint~~
+* use minibatch when testing

@@ -19,14 +19,31 @@ class SignsTrainer(BaseTrain):
         loss = np.mean(losses)  # average loss of minibatches
         acc = np.mean(accs)  # average accuracry of minibatches
 
-        cur_it = self.model.global_step_tensor.eval(self.sess)
+        cur_it = self.model.global_step_tensor.eval(self.sess)  # number of minibatches processed
+        cur_epoch = self.model.cur_epoch_tensor.eval(self.sess)  # number of epochs processed
 
-        # logging
-        self.logger.summarize(cur_it, summaries_dict={'loss': loss, 'acc': acc})
+        # logging, training        
+        self.logger.summarize(cur_epoch,
+                              summaries_dict={'loss': loss, 'acc': acc},
+                              summarizer="train")       
 
-        # # checkpoint, how often?
-        # if cur_it % self.config.save_interval == 0:
-        #     self.model.save(self.sess)
+        # logging, test        
+        if (cur_epoch % self.config.test_interval == 0):
+
+            feed_dict = {self.model.x: self.data.X_test,
+                         self.model.y: self.data.Y_test}
+
+            loss, acc = self.sess.run(fetches=[self.model.cross_entropy,  # cost function
+                                               self.model.accuracy],  # accuracy
+                                      feed_dict=feed_dict)
+
+            self.logger.summarize(cur_epoch,
+                                  summaries_dict={'loss': loss, 'acc': acc},
+                                  summarizer="test")       
+        
+        # create checkpoints
+        if (cur_epoch > self.epoch_start and cur_epoch % self.config.save_interval == 0):
+            self.model.save(self.sess)
 
     def train_step(self):
 

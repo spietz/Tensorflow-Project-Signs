@@ -13,15 +13,12 @@ class BaseTrain:
         self.sess.run(self.init)
 
     def train(self):
-        iter_start = self.model.cur_epoch_tensor.eval(self.sess)
-        for cur_epoch in tqdm(range(iter_start, self.config.num_epochs+1, 1)):
+        self.epoch_start = self.model.cur_epoch_tensor.eval(self.sess)  # store starting epoch (>0 if restarting from checkpoint)
+        for cur_epoch in tqdm(range(self.epoch_start, self.config.num_epochs + 1, 1),
+                              initial=self.epoch_start,
+                              total=self.config.num_epochs):
             self.train_epoch()
             self.sess.run(self.model.increment_cur_epoch_tensor)
-
-            iter_current = self.model.cur_epoch_tensor.eval(self.sess) - iter_start
-            if (iter_current > iter_start
-                and iter_current % self.config.save_interval == 0):
-                self.model.save(self.sess)
             
     def train_epoch(self):
         """

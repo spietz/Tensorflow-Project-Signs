@@ -1,6 +1,3 @@
-import os
-import sys
-
 import tensorflow as tf
  # tf.get_logger().setLevel('ERROR')
 
@@ -48,6 +45,7 @@ def main():
                                      model.y: data.Y_train}, session=sess)
     test_acc = model.accuracy.eval({model.x: data.X_test,
                                     model.y: data.Y_test}, session=sess)
+
     print("Train Accuracy:", train_acc)
     print("Test Accuracy:", test_acc)
     print("Done!")
