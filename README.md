@@ -16,14 +16,14 @@ re-written to fit within the generic project template
 Ensure that consistent versions of the various packages required for
 the code are used by generating a virtual environment and installing
 pip packages (python3) listed in
-[requirements.txt](../blob/master/requirements.txt):
+[requirements.txt](https://github.com/spietz/Tensorflow-Project-Signs/blob/master/requirements.txt):
 ```
 pip3 install -r requirements.txt
 ```
 
 Begin the training by running the main script:
 ```
-python3 train_test.py -c configs/signs.json
+python3 train_test_signs.py -c configs/signs.json
 ```
 
 Setup live monitoring of the training history output in the summary using tensorboard:
